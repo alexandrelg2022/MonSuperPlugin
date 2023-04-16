@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MonSuperPlugin:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MonSuperPlugin_jar</output-path>
+    <root id="archive" name="MonSuperPlugin.jar">
+      <element id="module-output" name="MonSuperPlugin" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/spigot-api-1.19.4-R0.1-20230411.084118-55-shaded.jar" path-in-jar="/" />
+      <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
+    </root>
+  </artifact>
+</component>
