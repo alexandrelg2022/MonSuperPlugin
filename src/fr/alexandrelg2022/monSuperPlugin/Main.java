@@ -1,6 +1,10 @@
 package fr.alexandrelg2022.monSuperPlugin;
 
+import fr.alexandrelg2022.monSuperPlugin.commands.InvseeCommand;
+import fr.alexandrelg2022.monSuperPlugin.commands.NickCommand;
+import fr.alexandrelg2022.monSuperPlugin.events.OnChat;
 import fr.alexandrelg2022.monSuperPlugin.events.OnJoin;
+import fr.alexandrelg2022.monSuperPlugin.events.OnList;
 import fr.alexandrelg2022.monSuperPlugin.events.OnQuit;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -32,9 +36,12 @@ public class Main extends JavaPlugin {
         pluginManager = getServer().getPluginManager();
         pluginManager.registerEvents(new OnJoin(), this);
         pluginManager.registerEvents(new OnQuit(), this);
+        pluginManager.registerEvents(new OnChat(), this);
+        pluginManager.registerEvents(new OnList(), this);
 
         /* It's importing the commands */
-
+        getCommand("nick").setExecutor(new NickCommand());
+        getCommand("invsee").setExecutor(new InvseeCommand());
     }
 
     /**

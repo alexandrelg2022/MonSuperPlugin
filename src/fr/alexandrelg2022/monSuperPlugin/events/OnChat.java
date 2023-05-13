@@ -1,5 +1,9 @@
 package fr.alexandrelg2022.monSuperPlugin.events;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Instrument;
+import org.bukkit.Note;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -22,7 +26,28 @@ public class OnChat implements Listener {
      */
     @EventHandler
     public void onChat(AsyncPlayerChatEvent e) {
+        e.setCancelled(true);
 
+        /* It's saving the player & the message into a variable */
+        Player player = e.getPlayer();
+        String msg = " §7: §r" + e.getMessage();
+
+        /* It's allowing the colors code if the player is OP */
+        if (player.isOp()) msg.replaceAll("&", "§");
+
+        /* It's looping all the connected players */
+        for (Player loopedPlayer : Bukkit.getOnlinePlayers()) {
+            /* It's tagging the user & pinging it if the messages contains his username */
+            String customMsg = msg.replaceAll(loopedPlayer.getDisplayName(), "§b§l@" + loopedPlayer.getDisplayName() + "§r");
+            if (msg.contains(loopedPlayer.getDisplayName())) loopedPlayer.playNote(
+                    loopedPlayer.getLocation(),
+                    Instrument.PLING,
+                    Note.natural(1, Note.Tone.A)
+            );
+
+            /* It's sending the message to the looped player */
+            loopedPlayer.sendMessage("§7>> §e" + player.getDisplayName() + customMsg);
+        }
     }
 
 }
